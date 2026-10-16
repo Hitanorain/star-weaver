@@ -4,6 +4,7 @@
   const cv = $('cv'), g = cv.getContext('2d');
   const CH = window.CHAPTERS, Board = window.Board, Sky = window.Sky, A = window.Audio2;
   const ALL = new URLSearchParams(location.search).has('all');
+  const SHOT = new URLSearchParams(location.search).has('shot');   // 截缩略图用：标题画面直接画好一个星座
 
   const ICON = {
     back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
@@ -70,8 +71,13 @@
   let demoPool = [];
   function startDemo() {
     if (!demoPool.length) demoPool = CH.flatMap(c => c.levels.filter(l => !l.portals)).sort(() => Math.random() - 0.5);
-    Board.load(demoPool.pop(), { demo: true, accent: Sky.THEMES.title.accent });
+    Board.load(SHOT ? CH[0].levels[7] : demoPool.pop(), { demo: true, accent: Sky.THEMES.title.accent });
     Board.alpha = 0;
+    if (SHOT) {
+      const d = Board.demo; Board.cur = Board.startNode = d.sol.start;
+      d.sol.path.forEach(m => Board.move(m, true)); d.i = d.sol.path.length; d.next = 1e9; Board.alpha = 0.7;
+      document.body.classList.add('shot');
+    }
     layoutBoard();
   }
   Board.on.demoDone = () => setTimeout(() => { if (screen === 'title') { boardTarget = 0; setTimeout(() => { if (screen === 'title') { startDemo(); boardTarget = 0.7; } }, 1200); } }, 2600);

@@ -147,3 +147,6 @@ button { font: inherit; color: inherit; cursor: pointer; pointer-events: auto; }
   .season .rule { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+.shot #btn-sound { display: none; }
+.shot .screen, .shot .logo h1, .shot #scr-title .primary { transition: none !important; animation: none !important; }
