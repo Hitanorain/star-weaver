@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>织星 · Star Weaver</title>
+<meta name="description" content="以星光为线，一笔连起整片夜空。四季 32 个星座的一笔画解谜。">
+<meta name="theme-color" content="#0c0a24">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23141033'/%3E%3Cpath d='M14 44 L28 20 L40 34 L52 14' stroke='%23ffd98a' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='14' cy='44' r='4' fill='%23fff'/%3E%3Ccircle cx='28' cy='20' r='4' fill='%23fff'/%3E%3Ccircle cx='40' cy='34' r='4' fill='%23fff'/%3E%3Ccircle cx='52' cy='14' r='5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+<canvas id="cv"></canvas>
+
+<div id="ui">
+  <button class="icon-btn" id="btn-sound" aria-label="声音"></button>
+
+  <section class="screen" id="scr-title">
+    <div class="logo">
+      <h1>织星</h1>
+      <p class="en">STAR · WEAVER</p>
+      <p class="sub">以星光为线，一笔连起整片夜空</p>
+    </div>
+    <button class="primary" id="btn-start">开始织星</button>
+    <p class="foot">四季星空 · 32 个星座</p>
+  </section>
+
+  <section class="screen" id="scr-seasons">
+    <header class="bar">
+      <button class="icon-btn" data-back="title" aria-label="返回"></button>
+      <h2>四季星图</h2>
+    </header>
+    <div class="seasons" id="seasons"></div>
+  </section>
+
+  <section class="screen" id="scr-levels">
+    <header class="bar">
+      <button class="icon-btn" data-back="seasons" aria-label="返回"></button>
+      <h2 id="lv-title"></h2>
+      <p class="bar-sub" id="lv-rule"></p>
+    </header>
+    <div class="levels" id="levels"></div>
+  </section>
+
+  <section class="screen" id="scr-play">
+    <header class="bar play-bar">
+      <button class="icon-btn" data-back="levels" aria-label="返回"></button>
+      <div class="pl-title">
+        <small id="pl-index"></small>
+        <h2 id="pl-name"></h2>
+      </div>
+    </header>
+    <p class="tip" id="pl-tip"></p>
+    <div class="progress" id="pl-progress"></div>
+    <footer class="tools">
+      <button class="tool" id="btn-undo"><i></i><span>撤销</span></button>
+      <button class="tool" id="btn-restart"><i></i><span>重来</span></button>
+      <button class="tool" id="btn-hint"><i></i><span>提示</span></button>
+    </footer>
+  </section>
+
+  <div class="overlay bottom" id="win">
+    <div class="card">
+      <p class="win-kicker" id="win-kicker">星座织成</p>
+      <h2 id="win-name"></h2>
+      <p class="win-en" id="win-en"></p>
+      <p class="win-line" id="win-line"></p>
+      <p class="win-medal" id="win-medal"></p>
+      <div class="row">
+        <button class="ghost" id="win-map">返回</button>
+        <button class="primary" id="win-next">下一个</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="intro">
+    <div class="card">
+      <div class="intro-art" id="intro-art"></div>
+      <h2 id="intro-title"></h2>
+      <p class="intro-text" id="intro-text"></p>
+      <button class="primary" id="intro-ok">知道了</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script src="js/solver.js?v=1"></script>
+<script src="js/levels.js?v=1"></script>
+<script src="js/audio.js?v=1"></script>
+<script src="js/sky.js?v=1"></script>
+<script src="js/board.js?v=1"></script>
+<script src="js/main.js?v=1"></script>
+</body>
+</html>
